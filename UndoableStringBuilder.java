@@ -20,7 +20,7 @@ import java.util.Stack;
     /**
      * creates UndoInsert command adds it to stack and append new String to StringBuilder
      * @param str  string to append
-     * @return last edited StringBuilder
+     * @return last edited UndoableStringBuilder
      */
     public UndoableStringBuilder append(String str) {
         Command newDelete = new UndoInsert(this.stringBuilder,stringBuilder.length(),stringBuilder.length() + str.length());
@@ -33,7 +33,7 @@ import java.util.Stack;
      * creates UndoDelete command adds it to stack and delete characters from StringBuilder
      * @param start  start point to delete from
      * @param end  end point to delete to
-     * @return  last edited StringBuilder
+     * @return  last edited UndoableStringBuilder
      */
     public UndoableStringBuilder delete(int start,int end){
         String toDelete = this.stringBuilder.substring(start,end);
@@ -47,7 +47,7 @@ import java.util.Stack;
      *  creates UndoInsert command adds it to stack and insert new String from offset point
      * @param offset  point to enter new string
      * @param str  new string to enter
-     * @return last edited StringBuilder
+     * @return last edited UndoableStringBuilder
      */
     public UndoableStringBuilder insert(int offset,String str){
         Command newDelete = new UndoInsert(this.stringBuilder,offset,offset + str.length());
@@ -61,7 +61,7 @@ import java.util.Stack;
      * @param start  start point to replace from
      * @param end  end point to replace to
      * @param str  new string to replace
-     * @return last edited StringBuilder
+     * @return last edited UndoableStringBuilder
      */
     public UndoableStringBuilder replace(int start, int end, String str){
         Command undoReplace = new UndoReplace(this.stringBuilder,start,this.stringBuilder.substring(start,end));
@@ -71,7 +71,7 @@ import java.util.Stack;
     }
     /**
      * creates UndoReverse command adds it to stack and reverses StringBuilder
-     * @return last edited StringBuilder
+     * @return last edited UndoableStringBuilder
      */
     public UndoableStringBuilder reverse(){
         Command undoReverse = new UndoReverse(this.stringBuilder);
@@ -82,7 +82,7 @@ import java.util.Stack;
 
     /**
      * return to previous change using Stack of commands
-     * @return previous change StringBuilder
+     * @return previous change UndoableStringBuilder
      */
     public UndoableStringBuilder undo(){
         if(!commands.isEmpty()){//check if stack is not empty before delete
