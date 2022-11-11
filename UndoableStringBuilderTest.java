@@ -44,6 +44,7 @@ class UndoableStringBuilderTest {
     }
     @Test
     void appendCheck(){
+        //some comment
         assertEquals("hello",usb.toString());
         usb.append(" world");
         assertEquals("hello world",usb.toString());

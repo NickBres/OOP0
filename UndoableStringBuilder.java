@@ -18,9 +18,9 @@ import java.util.Stack;
 
 
     /**
-     * creates UndoInsert command adds it to stack and append new String to StringBuilder
+     * creates undoinsert command adds it to stack and append new string to stringbuilder
      * @param str  string to append
-     * @return last edited UndoableStringBuilder
+     * @return last edited undoablestringbuilder
      */
     public UndoableStringBuilder append(String str) {
         Command newDelete = new UndoInsert(this.stringBuilder,stringBuilder.length(),stringBuilder.length() + str.length());
@@ -84,11 +84,10 @@ import java.util.Stack;
      * return to previous change using Stack of commands
      * @return previous change UndoableStringBuilder
      */
-    public UndoableStringBuilder undo(){
+    public void undo(){
         if(!commands.isEmpty()){//check if stack is not empty before delete
              commands.pop().apply();//delete item
         }
-         return this;
     }
 
 
