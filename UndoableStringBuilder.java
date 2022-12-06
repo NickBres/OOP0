@@ -64,7 +64,7 @@ import java.util.Stack;
      * @return last edited UndoableStringBuilder
      */
     public UndoableStringBuilder replace(int start, int end, String str){
-        Command undoReplace = new UndoReplace(this.stringBuilder,start,this.stringBuilder.substring(start,end));
+        Command undoReplace = new UndoReplace(this.stringBuilder,start,str.length(),this.stringBuilder.substring(start,end));
         commands.add(undoReplace);
         this.stringBuilder.replace(start,end,str);
         return this;

@@ -23,6 +23,25 @@ class UndoableStringBuilderTest {
     }
 
     @Test
+    void myTest(){
+        usb.append(" world!");
+        assertEquals("hello world!", usb.toString());
+        usb.delete(0,5);
+        assertEquals(" world!", usb.toString());
+        usb.insert(0,"Goodbye");
+        assertEquals("Goodbye world!", usb.toString());
+        usb.undo();
+        assertEquals(" world!", usb.toString());
+        usb.undo();
+        assertEquals("hello world!", usb.toString());
+        usb.replace(0,5,"Hi");
+        assertEquals("Hi world!", usb.toString());
+        usb.undo();
+        assertEquals("hello world!", usb.toString());
+
+    }
+
+    @Test
     void undoWhenStackIsEmpty(){
         UndoableStringBuilder usb = new UndoableStringBuilder();
         usb.undo();

@@ -5,20 +5,21 @@
  */
 public class UndoReplace extends Command {
 
-    int start;
+    int start,end;
     String str;
 
-    public UndoReplace(StringBuilder stringBuilder, int start, String str) {
+    public UndoReplace(StringBuilder stringBuilder, int start,int end, String str) {
         super(stringBuilder);
         this.start = start;
         this.str = str;
+        this.end = end;
     }
 
 
 
     @Override
     StringBuilder apply() {
-       new UndoInsert(this.stringBuilder,start,str.length()).apply();
+       new UndoInsert(this.stringBuilder,start,end).apply();
        return  new UndoDelete(this.stringBuilder,str,start).apply();
     }
 }
